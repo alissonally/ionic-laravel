@@ -5,7 +5,7 @@ namespace CodeDelivery\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface ProductRepository
+ * Interface CategoryRepository
  * @package namespace CodeDelivery\Repositories;
  */
 interface ProductRepository extends RepositoryInterface
