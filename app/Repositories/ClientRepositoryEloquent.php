@@ -13,6 +13,8 @@ use CodeDelivery\Models\Client;
  */
 class ClientRepositoryEloquent extends BaseRepository implements ClientRepository
 {
+
+
     /**
      * Specify Model class name
      *
