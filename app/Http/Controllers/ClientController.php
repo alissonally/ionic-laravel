@@ -6,6 +6,7 @@ namespace CodeDelivery\Http\Controllers;
 use CodeDelivery\Http\Requests\AdminClientRequest;
 use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Services\ClientService;
 use Illuminate\Http\Request;
 
 use CodeDelivery\Http\Controllers\Controller;
@@ -17,17 +18,18 @@ class ClientController extends Controller
      * @var ClientRepository
      */
     private $repository;
+
     /**
-     * @var UserRepository
+     * @var ClientService
      */
-    private $userRepository;
+    private $clientService;
 
 
-    public function __construct(ClientRepository $repository, UserRepository $userRepository)
+    public function __construct(ClientRepository $repository, ClientService $clientService)
     {
 
         $this->repository = $repository;
-        $this->userRepository = $userRepository;
+        $this->clientService = $clientService;
     }
 
     public function index()
@@ -39,34 +41,26 @@ class ClientController extends Controller
 
     public function create()
     {
-        $users = $this->userRepository->lists();
         return view('admin.clients.create',compact('users'));
     }
 
     public function store(AdminClientRequest $request)
     {
         $data = $request->all();
-        $this->repository->create($data);
+        $this->clientService->create($data);
         return redirect()->route('admin.clients.index');
     }
 
     public function edit($id)
     {
         $client = $this->repository->find($id);
-        $users = $this->userRepository->lists();
         return view('admin.clients.edit', compact('client', 'users'));
     }
 
     public function update(AdminClientRequest $request, $id)
     {
         $data = $request->all();
-        $this->repository->update($data, $id);
-        return redirect()->route('admin.clients.index');
-    }
-
-    public function destroy($id)
-    {
-        $this->repository->delete($id);
+        $this->clientService->update($data, $id);
         return redirect()->route('admin.clients.index');
     }
 }

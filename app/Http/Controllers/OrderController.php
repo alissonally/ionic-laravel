@@ -17,21 +17,15 @@ class OrderController extends Controller
      * @var CategoryRepository
      */
     private $repository;
-    /**
-     * @var UserRepository
-     */
-    private $userRepository;
 
-    public function __construct(OrderRepository $repository, UserRepository $userRepository)
+    public function __construct(OrderRepository $repository)
     {
-
         $this->repository = $repository;
-        $this->userRepository = $userRepository;
     }
 
     public function index()
     {
-        $orders = $this->repository->paginate(5);
+        $orders = $this->repository->paginate(10);
 
         return view('admin.orders.index', compact('orders'));
 
@@ -52,7 +46,6 @@ class OrderController extends Controller
     public function edit($id)
     {
         $orders = $this->repository->find($id);
-        $users = $this->userRepository->lists();
         return view('admin.orders.edit', compact('orders','users'));
     }
 
@@ -61,9 +54,5 @@ class OrderController extends Controller
         $data = $request->all();
         $this->repository->update($data, $id);
         return redirect()->route('admin.categories.index');
-    }
-
-    public function items($id){
-
     }
 }

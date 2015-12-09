@@ -8,20 +8,27 @@
                 <tr>
                     <th>ID</th>
                     <th>Total</th>
-                    <th>Status</th>
-                    <th>Ação</th>
+                    <th>Data</th>
+                    <th>Itens</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
             @if(count($orders) > 0)
                 @foreach( $orders as $order)
                     <tr>
-                        <td>{{$order->id}}</td>
+                        <td>#{{$order->id}}</td>
                         <td>{{$order->total}}</td>
-                        <td>{{$order->status}}</td>
+                        <td>{{$order->created_at}}</td>
                         <td>
-                            <a href="{{route('admin.orders.items', ['id'=>$order->id])}}" class="btn btn-primary btn-sm">Ítems</a>
-                            <a href="{{route('admin.orders.edit', ['id'=>$order->id])}}" class="btn btn-primary btn-sm">Eitar</a>
+                            <ul>
+                            @foreach( $order->items as $item )
+                                <li>{{$item->product->name}}</li>
+                            @endforeach
+                            </ul>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-primary btn-sm">Eitar</a>
                         </td>
                     </tr>
                 @endforeach

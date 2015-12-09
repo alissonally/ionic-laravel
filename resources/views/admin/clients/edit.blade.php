@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
     <div class="container">
-        <h2>Editando cliente {{$client->name}}</h2>
+        <h2>Editando cliente: {{$client->user->name}}</h2>
         @include('errors._check')
         {!! Form::model($client, ['route'=>['admin.clients.update',$client->id ]]) !!}
         @include('admin.clients._form')

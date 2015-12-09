@@ -1,24 +1,28 @@
 <div class="form-group">
-    {!! Form::label('Phone', 'Fone:') !!}
+    {!! Form::label('Nome', 'Nome:') !!}
+    {!! Form::text('user[name]', null,['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('Email', 'Email:') !!}
+    {!! Form::text('user[email]', null,['class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('Fone', 'Fone:') !!}
     {!! Form::text('phone', null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Address', 'Endereço:') !!}
-    {!! Form::text('address', null,['class'=>'form-control']) !!}
+    {!! Form::label('Endereço', 'Endereço:') !!}
+    {!! Form::textarea('address', null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('City', 'Cidade:') !!}
+    {!! Form::label('Cidade', 'Cidade:') !!}
     {!! Form::text('city', null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('State', 'Estado:') !!}
+    {!! Form::label('Estado', 'Estado:') !!}
     {!! Form::text('state', null,['class'=>'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Zipcode', 'Cep:') !!}
+    {!! Form::label('Cep', 'Cep:') !!}
     {!! Form::text('zipcode', null,['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('Users', 'Usuário:') !!}
-    {!! Form::select('user_id', $users, null,['class'=>'form-control']) !!}
 </div>
