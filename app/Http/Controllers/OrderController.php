@@ -31,28 +31,18 @@ class OrderController extends Controller
 
     }
 
-    public function create()
+    public function edit($id, UserRepository $userRepository)
     {
-        return view('admin.categories.create');
+        $list_status = [0=>'Pendente', 1=>'A Caminho', 2=>'Entregue', 3=>'Cancelado'];
+        $order = $this->repository->find($id);
+        $deliverymen = $userRepository->get_delivery_man();
+        return view('admin.orders.edit', compact('order', 'list_status', 'deliverymen'));
     }
 
-    public function store(AdminCategoryRequest $request)
-    {
-        $data = $request->all();
-        $this->repository->create($data);
-        return redirect()->route('admin.categories.index');
-    }
-
-    public function edit($id)
-    {
-        $orders = $this->repository->find($id);
-        return view('admin.orders.edit', compact('orders','users'));
-    }
-
-    public function update(AdminCategoryRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
         $this->repository->update($data, $id);
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.orders.index');
     }
 }

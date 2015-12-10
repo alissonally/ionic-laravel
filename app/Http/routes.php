@@ -38,6 +38,8 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.checkrole', 'as'=>'admin.']
 	Route::get('clients/destroy/{id}', ['as'=>'clients.destroy','uses'=>'ClientController@destroy']);
 	//Orders
 	Route::get('orders', ['as'=>'orders.index','uses'=>'OrderController@index']);
+	Route::get('orders/{id}', ['as'=>'orders.edit','uses'=>'OrderController@edit']);
+	Route::post('orders/update/{id}', ['as'=>'orders.update','uses'=>'OrderController@update']);
 });
 
 

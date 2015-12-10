@@ -1,10 +1,23 @@
 @extends('app')
 @section('content')
     <div class="container">
-        <h2>Editando</h2>
-        @include('errors._check')
-        {!! Form::model($orders, ['route'=>['admin.categories.update',$orders->id ]]) !!}
-        @include('admin.orders._form')
+        <h2>Pedido: #{{$order->id}} - R$ {{$order->total}}</h2>
+        <h3>Cliente: {{$order->client->user->name}} </h3>
+        <h4>Data: {{$order->created_at}}</h4>
+        <p>
+            <strong>Endereço de entrega:</strong>  {{$order->client->address}}<br>
+            <strong>Cidade:</strong>  {{$order->client->city}}<br>
+            <strong>Estado</strong>: {{$order->client->state}}
+        </p>
+        {!! Form::model($order, ['route'=>['admin.orders.update',$order->id ]]) !!}
+        <div class="form-group">
+            {!! Form::label('Status', 'Status:') !!}
+            {!! Form::select('status', $list_status, null,['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('Entregador', 'Entregador:') !!}
+            {!! Form::select('user_deliveryman_id', $deliverymen, null,['class'=>'form-control']) !!}
+        </div>
         <div class="form-group">
             {!! Form::submit('Salvar',['class'=>'btn btn-primary']) !!}
         </div>
