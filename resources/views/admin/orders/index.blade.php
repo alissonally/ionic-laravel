@@ -10,6 +10,8 @@
                     <th>Total</th>
                     <th>Data</th>
                     <th>Itens</th>
+                    <th>Entregador</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -28,7 +30,15 @@
                             </ul>
                         </td>
                         <td>
-                            <a href="" class="btn btn-primary btn-sm">Eitar</a>
+                            @if($order->deliveryman)
+                                {{$order->deliveryman->name}}
+                            @else
+                                Não informado
+                            @endif
+                        </td>
+                        <td>{{$order->status}}</td>
+                        <td>
+                            <a href="{{route('admin.orders.edit',['id'=>$order->id])}}" class="btn btn-primary btn-sm">Editar</a>
                         </td>
                     </tr>
                 @endforeach
